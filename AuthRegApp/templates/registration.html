@@ -1,0 +1,16 @@
+{% extends 'base_htmls/base.html' %}
+
+{% block main %}
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endif %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Зарегистрироваться">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_name }}</title>
+</head>
+<body>
+    <header>
+        <h1>Текущая страница - {{ page_name }}</h1>
+        <ul>
+            {% for menu_item in menu %}
+            {% if menu_item != page_name %}
+            <li>
+                <a href="{{ menu_item.url }}">{{ menu_item.text }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if request.user.is_authenticated %}
+            <li>
+                <a href="/profile/">Профиль</a>
+                <br>
+                <a href="/logout/">Выйти из аккаунта</a>
+            </li>
+            {% endif %}
+        </ul>
+    </header>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        Пустой футер
+    </footer>
+</body>
+</html>
